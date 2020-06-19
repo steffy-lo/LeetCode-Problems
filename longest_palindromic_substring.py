@@ -18,14 +18,14 @@ def main(string):
             palindrome_table[k][k+1] = True
 
     # For substring of lengths k, where k > 2
-    for k in range(3, len(string) + 1):
-        for i in range(len(string) - k + 1):
-            j = i + k - 1
+    for k in range(2, len(string)):
+        for i in range(len(string) - k):
+            j = i + k
             if palindrome_table[i + 1][j - 1] and string[i] == string[j]:
                 palindrome_table[i][j] = True
-                if k > length:
+                if k + 1 > length:
                     start = i
-                    length = k
+                    length = k + 1
 
     return string[start: start + length]
 

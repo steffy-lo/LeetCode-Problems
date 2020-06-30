@@ -34,7 +34,10 @@ def get_last_non_conflicting_job(jobs, n):
     return -1  # if no non-conflicting job is found
 
 
-def main(jobs) -> int:
+def main(startTime, endTime, profit) -> int:
+    jobs = []
+    for i in range(len(profit)):
+        jobs.append(Job(startTime[i], endTime[i], profit[i]))
     # sort jobs in increasing order of their finish times
     jobs.sort(key=lambda x: x.finish)
 
@@ -59,6 +62,7 @@ def main(jobs) -> int:
 
 
 if __name__ == "__main__":
-    print(main([Job(1, 3, 50), Job(2, 4, 10), Job(3, 5, 40), Job(3, 6, 70)]))
-    print(main([Job(1, 2, 20), Job(2, 5, 20), Job(3, 10, 100), Job(4, 6, 70), Job(6, 9, 60)]))
-    print(main([Job(1, 2, 5), Job(1, 3, 6), Job(1, 4, 4)]))
+    # print(main([Job(1, 3, 50), Job(2, 4, 10), Job(3, 5, 40), Job(3, 6, 70)]))
+    # print(main([Job(1, 2, 20), Job(2, 5, 20), Job(3, 10, 100), Job(4, 6, 70), Job(6, 9, 60)]))
+    # print(main([Job(1, 2, 5), Job(1, 3, 6), Job(1, 4, 4)]))
+    print(main([1, 2, 3, 3], [3, 4, 5, 6], [50, 10, 40, 70]))

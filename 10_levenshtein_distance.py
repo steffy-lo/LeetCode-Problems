@@ -13,10 +13,10 @@ def bottom_up(word1, word2):
     dist_table = [[0 for i in range(len(word2) + 1)] for j in range(len(word1) + 1)]
 
     for i in range(1, len(word1) + 1):
-        dist_table[i][0] = i  # case 1
+        dist_table[i][0] = i  # base case
 
     for j in range(1, len(word2) + 1):
-        dist_table[0][j] = j  # case 1
+        dist_table[0][j] = j  # base case
 
     for i in range(1, len(word1) + 1):
         for j in range(1, len(word2) + 1):

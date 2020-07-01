@@ -13,22 +13,24 @@ def bottom_up(word1, word2):
     dist_table = [[0 for i in range(len(word2) + 1)] for j in range(len(word1) + 1)]
 
     for i in range(1, len(word1) + 1):
-        dist_table[i][0] = i
+        dist_table[i][0] = i  # case 1
 
     for j in range(1, len(word2) + 1):
-        dist_table[0][j] = j
+        dist_table[0][j] = j  # case 1
 
     for i in range(1, len(word1) + 1):
         for j in range(1, len(word2) + 1):
-            cost = 0 if word1[i-1] == word2[j-1] else 1
-            dist_table[i][j] = min(dist_table[i-1][j] + 1,
-                                   dist_table[i][j-1] + 1,
-                                   dist_table[i-1][j-1] + cost)
+            if word1[i-1] == word2[j-1]:
+                dist_table[i][j] = dist_table[i-1][j-1]
+            else:
+                dist_table[i][j] = 1 + min(dist_table[i-1][j],
+                                           dist_table[i][j-1],
+                                           dist_table[i-1][j-1])
 
     return dist_table[len(word1)][len(word2)]
 
 
 if __name__ == "__main__":
     print(top_down("kitten", "sitting"))  # time limit exceeded on LeetCode... Boo...
-    print(bottom_up("kitten", "sitting"))  # ギリギリだね
+    print(bottom_up("intention", "execution"))  # ギリギリだね
 
